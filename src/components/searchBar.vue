@@ -3,7 +3,7 @@
     name: 'SearchBar',
     data(){
       return {
-
+          search:' ',
       }
     },
     
@@ -12,8 +12,9 @@
    
    <template>
      <div class="d-flex">
-        <input type="search">
+        <input type="search" v-model="search">
         <button>Cerca</button>
+        <p>{{search}}</p>
      </div>
    </template>
    

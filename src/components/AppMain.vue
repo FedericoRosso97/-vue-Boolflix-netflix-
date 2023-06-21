@@ -4,14 +4,14 @@ import axios from 'axios';
     name: 'AppMain',
     data(){
       return {
-   
+          apiLink:'https://api.themoviedb.org/3/search/movie?query=05e361d095d6a9d0db65612c54a8d5f5&include_adult=false&language=en-US&page=1' 
       }
     },
     components: {
 
     },
     created(){
-        axios.get("https://api.themoviedb.org/3/search/movie?api_key=05e361d095d6a9d0db65612c54a8d5f5&query=ritorno+al+futuro")
+        axios.get(this.apiLink)
   .then(function (response) {
     // handle success
     console.log(response);
