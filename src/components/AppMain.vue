@@ -4,6 +4,7 @@ import axios from 'axios';
     name: 'AppMain',
     data(){
       return {
+        filmList:[],
           apiLink:'https://api.themoviedb.org/3/search/movie?api_key=05e361d095d6a9d0db65612c54a8d5f5&query=back&include_adult=false&language=en-US&page=1'
       }
     },
@@ -12,9 +13,12 @@ import axios from 'axios';
     },
     created(){
         axios.get(this.apiLink)
-  .then(function (response) {
+  .then( (response) => {
     // handle success
     console.log(response);
+    console.log(response.data.results)
+    this.filmList=response.data.results
+    console.log(this.filmList)
   })
   .catch(function (error) {
     // handle error
@@ -32,6 +36,9 @@ import axios from 'axios';
 <template>
   <div>
     <h1>Main.Qui andranno tutti i films</h1>
+    <div v-for="(films,index) in filmList">
+      {{ filmList[index].original_title }}
+    </div>
   </div>
 </template>
 
