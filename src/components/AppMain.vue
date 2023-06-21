@@ -4,7 +4,7 @@ import axios from 'axios';
     name: 'AppMain',
     data(){
       return {
-          apiLink:'https://api.themoviedb.org/3/search/movie?api_key=05e361d095d6a9d0db65612c54a8d5f5&query=back&include_adult=false&language=en-US&page=1' 
+          apiLink:'https://api.themoviedb.org/3/search/movie?api_key=05e361d095d6a9d0db65612c54a8d5f5&query=back&include_adult=false&language=en-US&page=1'
       }
     },
     components: {
