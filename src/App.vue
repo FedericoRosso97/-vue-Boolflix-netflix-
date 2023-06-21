@@ -2,6 +2,7 @@
 import AppHeader from './components/AppHeader.vue';
 import AppMain from './components/AppMain.vue';
 
+
 export default {
     name: 'App',
     data(){
@@ -22,6 +23,7 @@ export default {
   
 </template>
 
-<style >
-
+<style lang="scss">
+  @import 'bootstrap/scss/bootstrap';
+  @import './styles/general.css';
 </style>

@@ -12,7 +12,7 @@
 
 <template>
   <div>
-    <h1>Main</h1>
+    <h1>Main.Qui andranno tutti i films</h1>
   </div>
 </template>
 

@@ -1,22 +1,19 @@
 <script >
-    import searchBar from './searchBar.vue';
     export default {
-    name: 'AppHeader',
+    name: 'SearchBar',
     data(){
       return {
 
       }
     },
-    components: {
-      searchBar,
-    }
+    
 }
    </script>
    
    <template>
      <div class="d-flex">
-        <h1 class="p-3">Header</h1>
-        <searchBar/>
+        <input type="search">
+        <button>Cerca</button>
      </div>
    </template>
    
