@@ -1,5 +1,6 @@
 <script >
 import axios from 'axios';
+import searchBar from './searchBar.vue';
  export default {
     name: 'AppMain',
     data(){
@@ -9,39 +10,60 @@ import axios from 'axios';
       }
     },
     components: {
+       searchBar,
+    },
+    methods:{
+        getMovies(search){
+        axios.get(this.apiLink,{
+            params:{
+            query:search,
+          }
+        }
+         
+        )
+       
+      .then( (response) => {
+    // handle success
+        //console.log(response);
+        //console.log(response.data.results)
+        this.filmList=response.data.results
+        console.log(this.filmList)
+        })
+        .catch(function (error) {
+    // handle error
+        console.log(error);
+         })
+       .finally(function () {
+    // always executed
+       })
+  
+    },
 
     },
-    created(){
-        axios.get(this.apiLink)
-  .then( (response) => {
-    // handle success
-    console.log(response);
-    console.log(response.data.results)
-    this.filmList=response.data.results
-    console.log(this.filmList)
-  })
-  .catch(function (error) {
-    // handle error
-    console.log(error);
-  })
-  .finally(function () {
-    // always executed
-  })
-  
+    create(){
+        this.getMovies
     }
 
+   
 }
 </script>
 
 <template>
-  <div>
-    <h1>Main.Qui andranno tutti i films</h1>
-    <div v-for="(films,index) in filmList">
-      {{ filmList[index].original_title }}
+    <header>
+        <searchBar @searched="getMovies" />
+    </header>
+  <main>
+    <div class="card d-felx p-2" v-for="(films,index) in filmList">
+       <p>Titolo:{{ filmList[index].title }}</p>
+       <p>Titolo originale:{{ filmList[index].original_title }}</p>
+       <p>Lingua originale:{{ filmList[index].original_language}}</p>
+       <p>Voto:{{ filmList[index].vote_average }}</p> 
     </div>
-  </div>
+  </main>
 </template>
 
 <style scoped>
-
+  .card{
+    border:1px solid black;
+  }
 </style>
