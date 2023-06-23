@@ -18,14 +18,11 @@ import searchBar from './searchBar.vue';
             params:{
             query:search,
           }
-        }
-         
-        )
-       
+        })
       .then( (response) => {
     // handle success
-        //console.log(response);
-        //console.log(response.data.results)
+        console.log(response);
+        console.log(response.data.results)
         this.filmList=response.data.results
         console.log(this.filmList)
         })
@@ -33,10 +30,7 @@ import searchBar from './searchBar.vue';
     // handle error
         console.log(error);
          })
-       .finally(function () {
-    // always executed
-       })
-  
+       
     },
 
     },
@@ -53,17 +47,21 @@ import searchBar from './searchBar.vue';
         <searchBar @searched="getMovies" />
     </header>
   <main>
-    <div class="card d-felx p-2" v-for="(films,index) in filmList">
+    <div class="container">
+        <div class="row">
+        <div class="col-3 d-felx p-2 myCard" v-for="(films,index) in filmList">
        <p>Titolo:{{ filmList[index].title }}</p>
        <p>Titolo originale:{{ filmList[index].original_title }}</p>
        <p>Lingua originale:{{ filmList[index].original_language}}</p>
        <p>Voto:{{ filmList[index].vote_average }}</p> 
     </div>
+    </div>
+    </div>
   </main>
 </template>
 
 <style scoped>
-  .card{
+  .myCard{
     border:1px solid black;
   }
 </style>
