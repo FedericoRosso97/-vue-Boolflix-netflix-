@@ -1,6 +1,7 @@
 <script >
 import axios from 'axios';
 import searchBar from './searchBar.vue';
+import cardFilm from './cardFilm.vue'
  export default {
     name: 'AppMain',
     data(){
@@ -11,6 +12,7 @@ import searchBar from './searchBar.vue';
     },
     components: {
        searchBar,
+       cardFilm,
     },
     methods:{
         getMovies(search){
@@ -45,18 +47,25 @@ import searchBar from './searchBar.vue';
 <template>
     <header>
         <searchBar @searched="getMovies" />
+        
     </header>
   <main>
     <div class="container">
-        <div class="row">
-        <div class="col-3 d-felx p-2 myCard" v-for="(films,index) in filmList">
-       <p>Titolo:{{ filmList[index].title }}</p>
-       <p>Titolo originale:{{ filmList[index].original_title }}</p>
-       <p>Lingua originale:{{ filmList[index].original_language}}</p>
-       <p>Voto:{{ filmList[index].vote_average }}</p> 
+        
+     <div class="row">
+        <div class="col-3 d-felx p-2 myCard">
+            <cardFilm v-for="films in filmList"
+            :filmElement="films"
+            />
+            
+         <!-- <p>Titolo:{{ filmList[index].title }}</p>
+          <p>Titolo originale:{{ filmList[index].original_title }}</p>
+          <p>Lingua originale:{{ filmList[index].original_language}}</p>
+          <p>Voto:{{ filmList[index].vote_average }}</p>-->
+        </div>
+     </div>
     </div>
-    </div>
-    </div>
+    
   </main>
 </template>
 
