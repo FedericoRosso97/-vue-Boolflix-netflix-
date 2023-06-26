@@ -20,7 +20,7 @@
      },
 
      getImagePath(imgSource){
-      return new URL(`../assets/img${imgSource}.jpg`, import.meta.url);
+      return new URL(`../assets/img/${imgSource}.jpg`, import.meta.url);
      }
     }
     
