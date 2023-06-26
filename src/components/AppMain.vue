@@ -1,38 +1,62 @@
 <script >
 import axios from 'axios';
 import searchBar from './searchBar.vue';
-import cardFilm from './cardFilm.vue'
+import cardFilm from './cardFilm.vue';
+import cardSeries from './cardSeries.vue';
  export default {
     name: 'AppMain',
     data(){
       return {
+        isVisible:false,
         filmList:[],
-          apiLink:'https://api.themoviedb.org/3/search/movie?api_key=05e361d095d6a9d0db65612c54a8d5f5&query=back&include_adult=false&language=en-US&page=1'
+        seriesList:[],
+        apiFilmsLink:'https://api.themoviedb.org/3/search/movie?api_key=05e361d095d6a9d0db65612c54a8d5f5&query=back&include_adult=false&language=en-US&page=1',
+        apiSeriesLink:'https://api.themoviedb.org/3/search/tv?api_key=05e361d095d6a9d0db65612c54a8d5f5&language=it_IT&query=back'
       }
     },
     
     components: {
        searchBar,
        cardFilm,
+       cardSeries,
     },
     
     methods:{
-        getMovies(search){
-        axios.get(this.apiLink,{
+      getMovies(search){
+        axios.get(this.apiFilmsLink,{
             params:{
             query:search,
           }
         })
        .then( (response) => {
-        console.log(response);
-        console.log(response.data.results)
         this.filmList=response.data.results
         console.log(this.filmList)
         })
         .catch(function (error) {
          console.log(error);
          })
-    },
+      },
+   
+      getSeries(search){
+        axios.get(this.apiSeriesLink,{
+            params:{
+            query:search,
+          }
+        })
+       .then( (response) => {
+        this.seriesListList=response.data.results
+        console.log(this.filmList)
+        })
+        .catch(function (error) {
+         console.log(error);
+         })
+      },
+      
+      searchApi(search){
+        this.getMovies(search)
+        this.getSeries(search)
+        this.isVisible=true
+      }
      
      //fine methods
     },
@@ -45,14 +69,17 @@ import cardFilm from './cardFilm.vue'
 
 <template>
     <header>
-        <searchBar @searched="getMovies" />
-        
+        <searchBar @searched="searchApi" />
     </header>
   <main>
     <div class="container">
         <div class="row wrap-nowrap">
             <cardFilm v-for="films in filmList"
-            :filmElement="films"
+             :filmElement="films"
+            />
+            <h1 v-if="isVisible">Serie Tv</h1>
+            <cardSeries v-for="series in filmList"
+             :seriesElement="series"
             />
         </div>
     </div>

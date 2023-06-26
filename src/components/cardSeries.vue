@@ -2,7 +2,7 @@
     export default {
     name: 'cardFilm',
     props:{
-       filmElement: Object
+       seriesElement: Object
     },
     data(){
       return {
@@ -27,19 +27,19 @@
    
    <template>
          <div class="col-3 p-2 myCard "> 
-            <p>Titolo:{{ filmElement.title }}</p>
-            <p>Titolo originale:{{ filmElement.original_title }}</p>
+            <p>Titolo:{{ seriesElement.title }}</p>
+            <p>Titolo originale:{{ seriesElement.original_title }}</p>
             <div>
-               <span v-if="isFlagPresent(filmElement.original_language)">
+               <span v-if="isFlagPresent(seriesElement.original_language)">
                   <span>Lingua originale:</span><img  
-                  :src="getImagePath(filmElement.original_language)" alt="img">
+                  :src="getImagePath(seriesElement.original_language)" alt="img">
                </span>
               
                <span v-else>
-                  <p>Lingua originale:{{ filmElement.original_language}}</p>
+                  <p>Lingua originale:{{ seriesElement.original_language}}</p>
                </span>
             </div>
-            <p>Voto:{{ filmElement.vote_average }}</p>
+            <p>Voto:{{ seriesElement.vote_average }}</p>
          </div>
    </template>
    
